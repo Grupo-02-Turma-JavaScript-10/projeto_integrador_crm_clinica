@@ -11,7 +11,9 @@ import {
 import { Especialidade } from '../entities/especilidade.entity';
 import { DeleteResult } from 'typeorm';
 import { EspecialidadeService } from '../services/especialidade.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Especialidade')
 @Controller('especialidade')
 export class EspecialidadeController {
   constructor(private especialidadeService: EspecialidadeService) {}
