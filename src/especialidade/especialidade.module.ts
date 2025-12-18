@@ -3,11 +3,8 @@ import { EspecialidadeService } from './services/especialidade.service';
 import { EspecialidadeController } from './controllers/especialidade.controller';
 
 @Module({
-    
-
   providers: [EspecialidadeService],
-    
 
-  controllers: [EspecialidadeController]
+  controllers: [EspecialidadeController],
 })
 export class EspecialidadeModule {}

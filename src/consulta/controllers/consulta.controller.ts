@@ -12,7 +12,6 @@ import {
 } from '@nestjs/common';
 import { ConsultaService } from '../services/consulta.service';
 import { Consulta } from '../entities/consulta.entity';
-import { create } from 'domain';
 
 @Controller('/consulta')
 export class ConsultaController {

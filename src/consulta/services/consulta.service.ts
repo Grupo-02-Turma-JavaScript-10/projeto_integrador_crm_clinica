@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DeleteResult, ILike, Repository } from 'typeorm';
 import { Consulta } from '../entities/consulta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -21,7 +21,7 @@ export class ConsultaService {
   }
 
   async findById(id: number): Promise<Consulta> {
-    let consulta = await this.consultaRepository.findOne({
+    const consulta = await this.consultaRepository.findOne({
       where: {
         id,
       },
