@@ -12,4 +12,10 @@ export class ConsultaController{
  findAll(): Promise<Consulta[]>{
     return this.consultaService.findAll()
  }
+
+ @Get("/:id")
+ @HttpCode(HttpStatus.OK)
+ findById(@Param("id", ParseIntPipe) id: number): Promise<Consulta>{
+    return this.consultaService.findById(id)
+ }
 }

@@ -20,5 +20,22 @@ export class ConsultaService{
         })
     }
 
+    async findById(id: number): Promise<Consulta>{
+        let consulta = await this.consultaRepository.findOne({
+            where: {
+                id
+            },
+            relations: {
+                especialidade: true
+            }
+        })
+
+        if(!consulta){
+            throw new HttpException("Consulta não encontrada", HttpStatus.NOT_FOUND)
+        }
+
+        return consulta
+    }
+
     
 }
