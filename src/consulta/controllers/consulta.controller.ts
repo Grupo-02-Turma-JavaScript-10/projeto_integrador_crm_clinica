@@ -7,4 +7,8 @@ import{Consulta} from '../entities/consulta.entity';
 export class ConsultaController{
  constructor(private readonly consultaService: ConsultaService){}
 
+ @Post()
+ create(@Body() consulta: Consulta): Promise<Consulta> {
+    return this.consultaService.create(consulta);
+ }
 }
