@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
-import { Especialidade } from '../../especialidade/entities/especialidade.entity';
 import { Paciente } from '../../paciente/entities/paciente.entity';
+import { Especialidade } from '../../especialidade/entities/especilidade.entity';
 
 @Entity({ name: 'tb_consultas' })
 export class Consulta {

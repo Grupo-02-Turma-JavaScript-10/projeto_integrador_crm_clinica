@@ -3,7 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Consulta } from './consulta/entities/consulta.entity';
 import { ConsultaModule } from './consulta/consulta.module';
 import { EspecialidadeModule } from './especialidade/especialidade.module';
+import { EspecialidadeModule } from './especialidade/especialidade.module';
 import { Especialidade } from './especialidade/entities/especialidade.entity';
+import { EspecialidadeModule } from './especialidade/especialidade.module';
 
 @Module({
   imports: [
