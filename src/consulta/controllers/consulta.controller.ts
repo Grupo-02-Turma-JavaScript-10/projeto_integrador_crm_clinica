@@ -22,6 +22,7 @@ export class ConsultaController {
   findAll(): Promise<Consulta[]> {
     return this.consultaService.findAll();
   }
+
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<Consulta> {
@@ -29,7 +30,23 @@ export class ConsultaController {
   }
 
   @Post()
+  @HttpCode(HttpStatus.CREATED)
   create(@Body() consulta: Consulta): Promise<Consulta> {
     return this.consultaService.create(consulta);
+  }
+
+  @Put(':id')
+  @HttpCode(HttpStatus.OK)
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() body: any,
+  ): Promise<Consulta> {
+    return this.consultaService.update(id, body);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return this.consultaService.delete(id);
   }
 }
