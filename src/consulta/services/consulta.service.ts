@@ -20,5 +20,8 @@ export class ConsultaService{
         })
     }
 
+    async create(consulta: Consulta): Promise<Consulta> {
+        return await this.consultaRepository.save(consulta);
+    }
     
 }
