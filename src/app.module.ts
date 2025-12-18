@@ -5,6 +5,7 @@ import { ConsultaModule } from './consulta/consulta.module';
 import { EspecialidadeModule } from './especialidade/especialidade.module';
 import { Especialidade } from './especialidade/entities/especilidade.entity';
 import { Paciente } from './paciente/entities/paciente.entity';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { Paciente } from './paciente/entities/paciente.entity';
     ConsultaModule,
     EspecialidadeModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
