@@ -12,5 +12,13 @@ export class ConsultaService{
         private readonly especialidadeService: EspecialidadeService,
     ) {}
 
+    async findAll(): Promise<Consulta[]>{
+        return await this.consultaRepository.find({
+            relations: {
+                especialidade: true
+            }
+        })
+    }
+
     
 }

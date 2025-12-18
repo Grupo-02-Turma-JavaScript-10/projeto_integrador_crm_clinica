@@ -7,4 +7,9 @@ import{Consulta} from '../entities/consulta.entity';
 export class ConsultaController{
  constructor(private readonly consultaService: ConsultaService){}
 
+ @Get()
+ @HttpCode(HttpStatus.OK)
+ findAll(): Promise<Consulta[]>{
+    return this.consultaService.findAll()
+ }
 }
