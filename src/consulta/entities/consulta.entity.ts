@@ -10,25 +10,25 @@ export class Consulta {
   @ApiProperty()
   id: number;
 
-  @IsNotEmpty()
   @Column({ type: 'date', nullable: false })
   @ApiProperty()
   data: Date;
 
-  @IsNotEmpty()
   @Column({ type: 'time', nullable: false })
   @ApiProperty()
   hora: string;
 
-  @IsNotEmpty()
   @Column({ length: 100, nullable: false })
   @ApiProperty()
   nomePaciente: string;
 
-  @IsNotEmpty()
   @Column({ length: 1000, nullable: false })
   @ApiProperty()
   descricaoSintomas: string;
+
+  @Column({type: 'boolean', default: false})
+  @ApiProperty()
+  realizado: boolean;
 
   @ApiProperty()
   @ManyToOne(() => Especialidade, (especialidade) => especialidade.consulta, {

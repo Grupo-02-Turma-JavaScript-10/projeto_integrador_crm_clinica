@@ -37,18 +37,21 @@ export class ConsultaController {
     return this.consultaService.create(consulta);
   }
 
-  @Put(':id')
+  @Put()
   @HttpCode(HttpStatus.OK)
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() body: any,
-  ): Promise<Consulta> {
-    return this.consultaService.update(id, body);
+  update(@Body() consulta: Consulta): Promise<Consulta> {
+    return this.consultaService.update(consulta);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.consultaService.delete(id);
+  }
+
+  @Put('/toggle-status/:id')
+  @HttpCode(HttpStatus.OK)
+  toggleStatus(@Param('id', ParseIntPipe) id: number): Promise<Consulta> {
+    return this.consultaService.toggleStatus(id);
   }
 }

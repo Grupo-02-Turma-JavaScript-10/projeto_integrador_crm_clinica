@@ -41,35 +41,17 @@ export class ConsultaService {
     return await this.consultaRepository.save(consulta);
   }
 
-  async update(id: number, body: any): Promise<Consulta> {
-    const consulta = await this.consultaRepository.findOne({
-      where: { id },
-      relations: ['especialidade', 'paciente'],
-    });
+  async update(consulta: Consulta): Promise<Consulta> {
+    const buscaConsulta = await this.findById(consulta.id);
 
-    if (!consulta) {
-      throw new HttpException('Consulta não encontrada', HttpStatus.NOT_FOUND);
+    for (const [key, value] of Object.entries(consulta)) {
+      if (value !== null && value !== undefined && value !== buscaConsulta[key]) {
+        buscaConsulta[key] = value;
+      }
     }
 
-    if (body.especialidadeId) {
-      await this.especialidadeService.findById(body.especialidadeId);
-    }
+    return await this.consultaRepository.save(buscaConsulta);
 
-    await this.consultaRepository.update(id, body);
-
-    const consultaAtualizada = await this.consultaRepository.findOne({
-      where: { id },
-      relations: ['especialidade', 'paciente'],
-    });
-
-    if (!consultaAtualizada) {
-      throw new HttpException(
-        'Erro ao atualizar consulta',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-
-    return consultaAtualizada;
   }
 
   async delete(id: number): Promise<void> {
@@ -82,5 +64,18 @@ export class ConsultaService {
     }
 
     await this.consultaRepository.delete(id);
+  }
+
+  async toggleStatus(id: number): Promise<Consulta> {
+    const buscaConsulta = await this.findById(id);
+
+    if (buscaConsulta.realizado === false){
+      buscaConsulta.realizado = true;
+    }
+    else {
+      buscaConsulta.realizado = false;
+    }
+
+    return await this.consultaRepository.save(buscaConsulta);
   }
 }
