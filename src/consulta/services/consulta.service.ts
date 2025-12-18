@@ -1,5 +1,5 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { DeleteResult, ILike, Repository } from 'typeorm';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Repository } from 'typeorm';
 import { Consulta } from '../entities/consulta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EspecialidadeService } from '../../especialidade/services/especialidade.service';

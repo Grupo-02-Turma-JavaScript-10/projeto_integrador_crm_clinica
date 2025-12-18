@@ -4,6 +4,7 @@ import { Consulta } from './consulta/entities/consulta.entity';
 import { ConsultaModule } from './consulta/consulta.module';
 import { EspecialidadeModule } from './especialidade/especialidade.module';
 import { Especialidade } from './especialidade/entities/especilidade.entity';
+import { Paciente } from './paciente/entities/paciente.entity';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { Especialidade } from './especialidade/entities/especilidade.entity';
       username: 'root',
       password: 'root',
       database: 'db_clinica',
-      entities: [Consulta, Especialidade],
+      entities: [Consulta, Especialidade, Paciente],
       synchronize: true,
     }),
     ConsultaModule,
