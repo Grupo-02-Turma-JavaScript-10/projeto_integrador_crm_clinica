@@ -1,0 +1,16 @@
+import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
+import { DeleteResult, ILike, Repository } from "typeorm";
+import { Consulta } from "../entities/consulta.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { EspecialidadeService } from "../../especialidade/services/especialidade.service";
+ 
+@Injectable()
+export class ConsultaService{
+    constructor(
+        @InjectRepository(Consulta)
+        private readonly consultaRepository: Repository<Consulta>,
+        private readonly especialidadeService: EspecialidadeService,
+    ) {}
+
+    
+}
