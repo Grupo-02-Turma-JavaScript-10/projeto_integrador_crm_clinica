@@ -12,5 +12,8 @@ export class ConsultaService{
         private readonly especialidadeService: EspecialidadeService,
     ) {}
 
+    async create(consulta: Consulta): Promise<Consulta> {
+        return await this.consultaRepository.save(consulta);
+    }
     
 }
