@@ -5,9 +5,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsNotEmpty } from 'class-validator';
-import { Especialidade } from '../../especialidade/entities/especialidade.entity';
-import { Paciente } from '../../paciente/entities/paciente.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+//import { Especialidade } from '../../especialidade/entities/especialidade.entity';
+//import { Paciente } from '../../paciente/entities/paciente.entity';
 
 @Entity({ name: 'tb_consultas' })
 export class Consulta {

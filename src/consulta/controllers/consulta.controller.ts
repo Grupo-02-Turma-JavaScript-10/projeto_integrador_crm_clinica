@@ -7,4 +7,24 @@ import{Consulta} from '../entities/consulta.entity';
 export class ConsultaController{
  constructor(private readonly consultaService: ConsultaService){}
 
+
+
+@Put (':id')
+
+@HttpCode (HttpStatus.OK)
+update
+ (@Param('id', ParseIntPipe) id:number, 
+@Body() body:any,
+) {
+    return this.consultaService.update(id, body);
 }
+@Delete (':id')
+
+@HttpCode (HttpStatus.NO_CONTENT)
+delete
+ (@Param('id', ParseIntPipe) id:number,
+): Promise<void> {
+    return this.consultaService.delete(id);
+}
+}
+
