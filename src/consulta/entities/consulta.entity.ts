@@ -1,13 +1,7 @@
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Especialidade } from './../../especialidade/entities/especilidade.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 import { Paciente } from '../../paciente/entities/paciente.entity';
-import { Especialidade } from '../../especialidade/entities/especilidade.entity';
 
 @Entity({ name: 'tb_consultas' })
 export class Consulta {
