@@ -7,20 +7,20 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Medifácil CRM - API')
-    .setDescription(`Api para gerenciamento de consultas médicas`)
+    .setTitle('CRMed - API')
+    .setDescription(`API para gerenciamento de consultas médicas`)
     .setContact(
-      'MediFácil',
-      'http://www.medifacil.online',
-      'contact@medifacil.com',
+      'CRMed',
+      'http://www.CRMed.online',
+      'contact@crmed.com',
     )
     .setVersion('0.1')
     .build();
   const document = SwaggerModule.createDocument(app, config);
 
   SwaggerModule.setup('/api', app, document, {
-    customSiteTitle: 'CRM MediFácil',
-    customfavIcon: 'https://i.imgur.com/Vz4xT2W.png',
+    customSiteTitle: 'CRMed',
+    customfavIcon: 'https://i.imgur.com/siAxTvd.png',
     customCss: `
       .swagger-ui .topbar { 
         background: linear-gradient(135deg, #2d8a2dff 0%, #38c87dff 100%);
@@ -30,12 +30,11 @@ async function bootstrap() {
         color: #0e0e0e;\
       }
       .topbar-wrapper .link::before {
-      content: url('https://i.imgur.com/Vz4xT2W.png');
-      font-size: 50px;
+      font-size: 20px;
       margin-right: 8px;
       }
       .information-container .info .title::before {
-      content: url('https://i.imgur.com/Vz4xT2W.png');
+      content: url('https://i.imgur.com/wow0MaD.png');
       font-size: 40px;
       margin-right: 25px;
       }
@@ -44,7 +43,13 @@ async function bootstrap() {
       align-items: center;
       }
       body {
-        background-color: #d5e7f1ff;
+        background-color: #ecededff;
+      }
+      .information-container .info .description p {
+        color: #0e0e0e; !important;
+        font-size: 30px;
+        line-height: 1.7;
+        margin-bottom: 15px;
       }
     `,
   });
