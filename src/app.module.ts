@@ -1,25 +1,19 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Consulta } from './consulta/entities/consulta.entity';
 import { ConsultaModule } from './consulta/consulta.module';
 import { EspecialidadeModule } from './especialidade/especialidade.module';
-import { Especialidade } from './especialidade/entities/especilidade.entity';
-import { Paciente } from './paciente/entities/paciente.entity';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { PacienteModule } from './paciente/paciente.module';
+import { ConfigModule } from '@nestjs/config';
+import { ProdService } from './data/services/prod.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'db_clinica',
-      entities: [Consulta, Especialidade, Paciente],
-      synchronize: true,
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useClass: ProdService,
+      imports: [ConfigModule],
     }),
     ConsultaModule,
     EspecialidadeModule,
