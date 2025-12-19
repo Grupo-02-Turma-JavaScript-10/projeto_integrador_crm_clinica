@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { Consulta } from '../entities/consulta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EspecialidadeService } from '../../especialidade/services/especialidade.service';
+import { PacienteService } from '../../paciente/services/paciente.service';
 
 @Injectable()
 export class ConsultaService {
@@ -10,12 +11,14 @@ export class ConsultaService {
     @InjectRepository(Consulta)
     private readonly consultaRepository: Repository<Consulta>,
     private readonly especialidadeService: EspecialidadeService,
+    private readonly pacienteService: PacienteService,
   ) {}
 
   async findAll(): Promise<Consulta[]> {
     return await this.consultaRepository.find({
       relations: {
         especialidade: true,
+        paciente: true,
       },
     });
   }
@@ -27,6 +30,7 @@ export class ConsultaService {
       },
       relations: {
         especialidade: true,
+        paciente: true,
       },
     });
 
@@ -38,10 +42,18 @@ export class ConsultaService {
   }
 
   async create(consulta: Consulta): Promise<Consulta> {
+    await this.pacienteService.findById(consulta.paciente.id);
+
+    await this.especialidadeService.findById(consulta.especialidade.id);
+
     return await this.consultaRepository.save(consulta);
   }
 
   async update(consulta: Consulta): Promise<Consulta> {
+    await this.pacienteService.findById(consulta.paciente.id);
+
+    await this.especialidadeService.findById(consulta.especialidade.id);
+    
     const buscaConsulta = await this.findById(consulta.id);
 
     for (const [key, value] of Object.entries(consulta)) {
@@ -55,13 +67,7 @@ export class ConsultaService {
   }
 
   async delete(id: number): Promise<void> {
-    const consulta = await this.consultaRepository.findOne({
-      where: { id },
-    });
-
-    if (!consulta) {
-      throw new HttpException('Consulta não encontrada', HttpStatus.NOT_FOUND);
-    }
+    await this.findById(id);
 
     await this.consultaRepository.delete(id);
   }
