@@ -6,6 +6,8 @@ import { EspecialidadeModule } from './especialidade/especialidade.module';
 import { Especialidade } from './especialidade/entities/especilidade.entity';
 import { Paciente } from './paciente/entities/paciente.entity';
 import { AppController } from './app.controller';
+import { AuthModule } from './auth/auth.module';
+import { PacienteModule } from './paciente/paciente.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { AppController } from './app.controller';
     }),
     ConsultaModule,
     EspecialidadeModule,
+    AuthModule,
+    PacienteModule,
   ],
   controllers: [AppController],
   providers: [],
