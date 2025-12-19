@@ -18,10 +18,6 @@ export class Consulta {
   @ApiProperty()
   hora: string;
 
-  @Column({ length: 100, nullable: false })
-  @ApiProperty()
-  nomePaciente: string;
-
   @Column({ length: 1000, nullable: false })
   @ApiProperty()
   descricaoSintomas: string;
