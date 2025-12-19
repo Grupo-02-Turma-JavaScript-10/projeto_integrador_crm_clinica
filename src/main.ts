@@ -15,6 +15,7 @@ async function bootstrap() {
       'contact@crmed.com',
     )
     .setVersion('0.1')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
 

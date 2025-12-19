@@ -1,98 +1,89 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<h1 align="center">CRMed - API para Gerenciamento de Consultas Médicas</h1>
+<h3 align="center">Sistema de Agendamento e Controle de Consultas Clínicas</h3>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<h4 align="center">Por Alan Dias, Eduardo Reis, Enrique Andreazza, Kali França, Karoline S. Fassel, Lívia Dias e Pâmela dos Reis</h4>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+# 📌 Descrição Geral
+O **CRMed** é uma API de gerenciamento de consultas médicas voltada para clínicas e profissionais da saúde. A aplicação permite o Registro de Pacientes, Cadastro de Especialidades Médicas e Agendamento de Consultas, possibilitando consultar, editar e gerenciar o status de realização das consultas - Tanto sobre os Pacientes quanto sobre as Especialidades e Consultas agendadas - sempre que necessário.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+# 🧩 Entidades e Atributos
+## 👤 Entidade **Paciente** 
+A entidade principal do sistema é o **Paciente** cadastrado na clínica. Os atributos definidos além do ID são:
 
-```bash
-$ npm install
-```
+- **nome** – Nome completo do paciente  
+- **usuario** – E-mail do paciente utilizado para login  
+- **senha** – Senha criptografada para acesso ao sistema  
+- **foto** – URL ou base64 da foto de perfil do paciente  
+- **consulta** – Lista de consultas agendadas pelo paciente
 
-## Compile and run the project
+Esses atributos foram escolhidos por representarem informações essenciais para sistemas de gerenciamento clínico, garantindo identificação única e segurança no acesso.
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## 🩺 Entidade **Especialidade**
+A entidade **Especialidade** representa as áreas médicas disponíveis na clínica. Os atributos definidos além do ID são:
 
-# production mode
-$ npm run start:prod
-```
+- **nome** – Nome da especialidade médica (Ex: Cardiologia, Dermatologia)  
+- **descricao** – Descrição detalhada da especialidade e seus tratamentos  
+- **consulta** – Lista de consultas associadas a esta especialidade
 
-## Run tests
+Esses atributos foram escolhidos por permitirem organização clara das áreas médicas oferecidas pela clínica e facilitar o agendamento direcionado.
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## 📅 Entidade **Consulta**
+A entidade **Consulta** é o núcleo do sistema de agendamento. Os atributos definidos além do ID são:
 
-# test coverage
-$ npm run test:cov
-```
+- **data** – Data agendada para a consulta  
+- **hora** – Horário agendado para a consulta  
+- **nomePaciente** – Nome do paciente (redundante para facilitar consultas rápidas)  
+- **descricaoSintomas** – Descrição detalhada dos sintomas relatados pelo paciente  
+- **realizado** – Status booleano indicando se a consulta foi realizada (padrão: false)  
+- **especialidade** – Especialidade médica relacionada à consulta  
+- **paciente** – Paciente que agendou a consulta
 
-## Deployment
+Esses atributos foram escolhidos por cobrirem todas as informações necessárias para o agendamento, acompanhamento e histórico médico do paciente.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+---
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## ⚙️ Funcionalidades Principais (CRUD)
+Operações básicas de CRUD, comuns aos três recursos (Paciente, Especialidade e Consulta):
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+- **findAll()** – Lista todos os registros cadastrados  
+- **findById()** – Busca registros específicos por ID  
+- **create()** – Cadastra um novo registro  
+- **update()** – Atualiza os dados de um registro existente  
+- **delete()** – Remove um registro do sistema (apenas Especialidade e Consulta)
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## ⚙️ Funcionalidades Específicas de cada recurso
+Métodos que atendem a necessidades específicas de cada recurso (lógica de negócio):
 
-Check out a few resources that may come in handy when working with NestJS:
+- **PacienteService.findByUsuario()** – Busca paciente por e-mail (usuário) para validação de login
+- **ConsultaService.toggleStatus()** – Alterna o status de realização da consulta (realizado: true/false)
+- **AuthService.validateUser()** – Valida credenciais do usuário comparando senhas criptografadas
+- **AuthService.login()** – Gera token JWT para autenticação do paciente no sistema
+- **Bcrypt.criptografarSenha()** – Criptografa senhas utilizando bcrypt com 10 saltos de segurança
+- **Bcrypt.compararSenhas()** – Compara senha digitada com senha armazenada no banco de dados
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
 
-## Support
+# 🛠️ Tecnologias Utilizadas
+### **Backend e Banco de Dados**
+- **TypeScript** – Linguagem utilizada no desenvolvimento do backend, garantindo tipagem estática e melhor manutenção do código.  
+- **TypeORM** – ORM utilizado para mapear entidades, gerenciar migrations e facilitar a comunicação com o banco de dados.  
+- **NestJS** – Framework backend responsável pelos endpoints, controllers, services e modules.  
+- **MySQL** – Banco de dados relacional usado para armazenar e organizar os registros de pacientes, especialidades e consultas.
+- **Passport** – Middleware de autenticação utilizado para implementar estratégias Local e JWT.
+- **JWT (JSON Web Token)** – Padrão de autenticação baseado em tokens para proteger rotas e validar sessões.
+- **Bcrypt** – Biblioteca para criptografia de senhas com salt, garantindo segurança no armazenamento de credenciais.
+- **Swagger** – Documentação interativa da API, permitindo testes e visualização de todos os endpoints disponíveis.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### **Ferramentas de Apoio**
+- **Insomnia/Postman** – Ferramenta para testar as rotas da API, validar requisições e simular operações CRUD.
+- **Git/GitHub** – Controle de versão e repositório para gerenciamento colaborativo do código-fonte.
