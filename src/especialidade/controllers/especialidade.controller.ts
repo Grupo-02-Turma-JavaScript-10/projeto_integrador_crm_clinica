@@ -14,9 +14,10 @@ import {
 import { Especialidade } from '../entities/especilidade.entity';
 import { DeleteResult } from 'typeorm';
 import { EspecialidadeService } from '../services/especialidade.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 
+@ApiBearerAuth()
 @ApiTags('Especialidade')
 @UseGuards(JwtAuthGuard)
 @Controller('especialidade')

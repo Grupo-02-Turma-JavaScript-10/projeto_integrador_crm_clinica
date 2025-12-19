@@ -13,9 +13,10 @@ import {
 } from '@nestjs/common';
 import { ConsultaService } from '../services/consulta.service';
 import { Consulta } from '../entities/consulta.entity';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 
+@ApiBearerAuth()
 @ApiTags('Consulta')
 @UseGuards(JwtAuthGuard)
 @Controller('/consulta')

@@ -11,8 +11,8 @@ async function bootstrap() {
     .setDescription(`API para gerenciamento de consultas médicas`)
     .setContact(
       'CRMed',
-      'http://www.CRMed.online',
-      'contact@crmed.com',
+      'https://github.com/Grupo-02-Turma-JavaScript-10/projeto_integrador_crm_clinica',
+      'generation10grupo02@gmail.com',
     )
     .setVersion('0.1')
     .addBearerAuth()
