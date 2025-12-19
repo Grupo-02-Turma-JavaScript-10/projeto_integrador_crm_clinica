@@ -24,31 +24,31 @@ import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 export class EspecialidadeController {
   constructor(private especialidadeService: EspecialidadeService) {}
 
-  @Get()
+  @Get('/all')
   @HttpCode(HttpStatus.OK)
   findAll(): Promise<Especialidade[]> {
     return this.especialidadeService.findAll();
   }
 
-  @Get(':id')
+  @Get('/id/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<Especialidade> {
     return this.especialidadeService.findById(id);
   }
 
-  @Post()
+  @Post('/new')
   @HttpCode(HttpStatus.CREATED)
   create(@Body() especialidade: Especialidade): Promise<Especialidade> {
     return this.especialidadeService.create(especialidade);
   }
 
-  @Put()
+  @Put('/update')
   @HttpCode(HttpStatus.OK)
   update(@Body() especialidade: Especialidade): Promise<Especialidade> {
     return this.especialidadeService.update(especialidade);
   }
 
-  @Delete(':id')
+  @Delete('/delete/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult> {
     return this.especialidadeService.delete(id);

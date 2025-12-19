@@ -23,31 +23,31 @@ import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 export class ConsultaController {
   constructor(private readonly consultaService: ConsultaService) {}
 
-  @Get()
+  @Get('/all')
   @HttpCode(HttpStatus.OK)
   findAll(): Promise<Consulta[]> {
     return this.consultaService.findAll();
   }
 
-  @Get('/:id')
+  @Get('/id/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<Consulta> {
     return this.consultaService.findById(id);
   }
 
-  @Post()
+  @Post('/new')
   @HttpCode(HttpStatus.CREATED)
   create(@Body() consulta: Consulta): Promise<Consulta> {
     return this.consultaService.create(consulta);
   }
 
-  @Put()
+  @Put('/update')
   @HttpCode(HttpStatus.OK)
   update(@Body() consulta: Consulta): Promise<Consulta> {
     return this.consultaService.update(consulta);
   }
 
-  @Delete(':id')
+  @Delete('/delete/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.consultaService.delete(id);
