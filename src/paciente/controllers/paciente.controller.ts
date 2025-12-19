@@ -1,8 +1,12 @@
-import { Body, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
 import { PacienteService } from "../services/paciente.service";
 import { Paciente } from "../entities/paciente.entity";
 import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('Paciente')
+@Controller('Pacientes')
 export class PacienteController {
 
   constructor(private readonly pacienteService: PacienteService) {}
