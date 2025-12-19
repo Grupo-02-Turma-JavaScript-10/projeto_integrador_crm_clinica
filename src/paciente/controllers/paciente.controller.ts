@@ -1,17 +1,20 @@
-import { Body, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { Body, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
 import { PacienteService } from "../services/paciente.service";
 import { Paciente } from "../entities/paciente.entity";
+import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
 
 export class PacienteController {
 
   constructor(private readonly pacienteService: PacienteService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get('/all')
   @HttpCode(HttpStatus.OK)
   findAll(): Promise<Paciente[]> {
     return this.pacienteService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<Paciente> {
@@ -24,6 +27,7 @@ export class PacienteController {
     return this.pacienteService.create(paciente);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put('/atualizar')
   @HttpCode(HttpStatus.OK)
   async update(@Body() paciente: Paciente): Promise<Paciente> {
