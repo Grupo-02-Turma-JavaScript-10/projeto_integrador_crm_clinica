@@ -3,6 +3,9 @@
 
 <h4 align="center">Por Alan Dias, Eduardo Reis, Enrique Andreazza, Kali França, Karoline S. Fassel, Lívia Dias e Pâmela dos Reis</h4>
 
+<div align="center">
+  <img src="https://i.imgur.com/znEnnyf.png" alt="Descrição da Imagem" width="400">
+</div>
 
 ---
 
