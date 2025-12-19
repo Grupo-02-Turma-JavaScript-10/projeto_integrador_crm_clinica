@@ -22,7 +22,7 @@ export class Consulta {
   @ApiProperty()
   descricaoSintomas: string;
 
-  @Column({type: 'boolean', default: false})
+  @Column({ type: 'boolean', default: false })
   @ApiProperty()
   realizado: boolean;
 
