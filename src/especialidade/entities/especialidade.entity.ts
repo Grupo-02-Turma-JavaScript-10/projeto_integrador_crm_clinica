@@ -15,11 +15,6 @@ export class Especialidade {
   @ApiProperty()
   nome: string;
 
-  @IsNotEmpty()
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  @ApiProperty()
-  descricao: string;
-
   @OneToMany(() => Medico, (medico) => medico.especialidade)
   medico: Medico[]
 

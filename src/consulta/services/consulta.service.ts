@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { Consulta } from '../entities/consulta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EspecialidadeService } from '../../especialidade/services/especialidade.service';
-import { PacienteService } from '../../medico/services/medico.service';
+import { MedicoService } from '../../medico/services/medico.service';
 
 @Injectable()
 export class ConsultaService {
@@ -11,14 +11,14 @@ export class ConsultaService {
     @InjectRepository(Consulta)
     private readonly consultaRepository: Repository<Consulta>,
     private readonly especialidadeService: EspecialidadeService,
-    private readonly pacienteService: PacienteService,
+    private readonly medicoService: MedicoService,
   ) {}
 
   async findAll(): Promise<Consulta[]> {
     return await this.consultaRepository.find({
       relations: {
         especialidade: true,
-        paciente: true,
+        medico: true,
       },
     });
   }
@@ -30,7 +30,7 @@ export class ConsultaService {
       },
       relations: {
         especialidade: true,
-        paciente: true,
+        medico: true,
       },
     });
 
@@ -42,7 +42,7 @@ export class ConsultaService {
   }
 
   async create(consulta: Consulta): Promise<Consulta> {
-    await this.pacienteService.findById(consulta.paciente.id);
+    await this.medicoService.findById(consulta.medico.id);
 
     await this.especialidadeService.findById(consulta.especialidade.id);
 
@@ -50,7 +50,7 @@ export class ConsultaService {
   }
 
   async update(consulta: Consulta): Promise<Consulta> {
-    await this.pacienteService.findById(consulta.paciente.id);
+    await this.medicoService.findById(consulta.medico.id);
 
     await this.especialidadeService.findById(consulta.especialidade.id);
     
