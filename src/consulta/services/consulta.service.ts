@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { Consulta } from '../entities/consulta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EspecialidadeService } from '../../especialidade/services/especialidade.service';
-import { PacienteService } from '../../paciente/services/paciente.service';
+import { PacienteService } from '../../medico/services/medico.service';
 
 @Injectable()
 export class ConsultaService {

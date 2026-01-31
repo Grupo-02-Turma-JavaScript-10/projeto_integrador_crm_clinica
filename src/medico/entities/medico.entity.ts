@@ -4,7 +4,7 @@ import { Consulta } from '../../consulta/entities/consulta.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'tb_usuarios' })
-export class Paciente {
+export class Medico {
   @PrimaryGeneratedColumn()
   @ApiProperty()
   id: number;
@@ -31,6 +31,6 @@ export class Paciente {
   foto: string;
 
   @ApiProperty()
-  @OneToMany(() => Consulta, (consulta) => consulta.paciente)
+  @OneToMany(() => Consulta, (consulta) => consulta.medico)
   consulta: Consulta[];
 }

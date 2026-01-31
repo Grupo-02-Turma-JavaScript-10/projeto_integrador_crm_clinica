@@ -2,14 +2,14 @@ import { JwtService } from '@nestjs/jwt';
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Bcrypt } from '../bcrypt/bcrypt';
 import { UsuarioLogin } from '../entities/usuariologin.entity';
-import { Paciente } from '../../paciente/entities/paciente.entity';
-import { PacienteService } from '../../paciente/services/paciente.service';
+import { Medico } from '../../medico/entities/medico.entity';
+import { MedicoService } from '../../medico/services/medico.service';
 
 
 @Injectable()
 export class AuthService{
     constructor(
-        private pacienteService: PacienteService,
+        private pacienteService: MedicoService,
         private jwtService: JwtService,
         private bcrypt: Bcrypt
     ){ }

@@ -1,6 +1,6 @@
 import { forwardRef, Module } from "@nestjs/common";
 import { Bcrypt } from "./bcrypt/bcrypt";
-import { PacienteModule } from "../paciente/paciente.module";
+import { MedicoModule } from "../medico/medico.module";
 import { PassportModule } from "@nestjs/passport";
 import { jwtConstants } from "./constants/constants";
 import { JwtModule } from "@nestjs/jwt";
@@ -11,7 +11,7 @@ import { JwtStrategy } from "./strategy/jwt.strategy";
 
 @Module({
     imports: [
-        forwardRef(() => PacienteModule),
+        forwardRef(() => MedicoModule),
         PassportModule,
         JwtModule.register({
             secret: jwtConstants.secret,
