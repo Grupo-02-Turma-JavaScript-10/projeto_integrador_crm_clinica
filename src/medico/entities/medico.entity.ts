@@ -1,7 +1,8 @@
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Consulta } from '../../consulta/entities/consulta.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Especialidade } from '../../especialidade/entities/especialidade.entity';
 
 @Entity({ name: 'tb_usuarios' })
 export class Medico {
@@ -33,4 +34,7 @@ export class Medico {
   @ApiProperty()
   @OneToMany(() => Consulta, (consulta) => consulta.medico)
   consulta: Consulta[];
+
+  @ManyToOne(() => Especialidade, (especialidade) => especialidade.medico, {onDelete: 'CASCADE'})
+  especialidade: Especialidade
 }

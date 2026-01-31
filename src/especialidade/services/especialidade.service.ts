@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Especialidade } from '../entities/especilidade.entity';
+import { Especialidade } from '../entities/especialidade.entity';
 import { Repository } from 'typeorm';
 import { DeleteResult } from 'typeorm/browser';
 
@@ -15,6 +15,7 @@ export class EspecialidadeService {
     return await this.especialidadeRepository.find({
       relations: {
         consulta: true,
+        medico: true,
       },
     });
   }

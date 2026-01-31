@@ -11,7 +11,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { Especialidade } from '../entities/especilidade.entity';
+import { Especialidade } from '../entities/especialidade.entity';
 import { DeleteResult } from 'typeorm';
 import { EspecialidadeService } from '../services/especialidade.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';

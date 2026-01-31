@@ -1,4 +1,4 @@
-import { Especialidade } from './../../especialidade/entities/especilidade.entity';
+import { Especialidade } from '../../especialidade/entities/especialidade.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 import { Medico } from '../../medico/entities/medico.entity';

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { Consulta } from '../../consulta/entities/consulta.entity';
-import { Especialidade } from '../../especialidade/entities/especilidade.entity';
+import { Especialidade } from '../../especialidade/entities/especialidade.entity';
 import { Medico } from '../../medico/entities/medico.entity';
 
 @Injectable()
