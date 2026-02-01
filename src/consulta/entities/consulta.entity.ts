@@ -3,6 +3,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 import { Medico } from '../../medico/entities/medico.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Paciente } from '../../paciente/entities/paciente.entity';
 
 @Entity({ name: 'tb_consultas' })
 export class Consulta {
@@ -37,4 +38,7 @@ export class Consulta {
     onDelete: 'CASCADE',
   })
   medico: Medico;
+
+  @ManyToOne(() => Paciente, (paciente) => paciente.consulta, {onDelete: 'CASCADE'})
+  paciente: Paciente;
 }
