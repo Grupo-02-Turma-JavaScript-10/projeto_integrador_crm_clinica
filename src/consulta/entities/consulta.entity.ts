@@ -1,8 +1,9 @@
-import { Especialidade } from './../../especialidade/entities/especilidade.entity';
+import { Especialidade } from '../../especialidade/entities/especialidade.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
-import { Paciente } from '../../paciente/entities/paciente.entity';
+import { Medico } from '../../medico/entities/medico.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Paciente } from '../../paciente/entities/paciente.entity';
 
 @Entity({ name: 'tb_consultas' })
 export class Consulta {
@@ -33,8 +34,11 @@ export class Consulta {
   especialidade: Especialidade;
 
   @ApiProperty()
-  @ManyToOne(() => Paciente, (paciente) => paciente.consulta, {
+  @ManyToOne(() => Medico, (medico) => medico.consulta, {
     onDelete: 'CASCADE',
   })
+  medico: Medico;
+
+  @ManyToOne(() => Paciente, (paciente) => paciente.consulta, {onDelete: 'CASCADE'})
   paciente: Paciente;
 }

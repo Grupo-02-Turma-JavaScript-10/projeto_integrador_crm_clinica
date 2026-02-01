@@ -1,36 +1,39 @@
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Consulta } from '../../consulta/entities/consulta.entity';
-import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, isNotEmpty, IsNotEmpty, IsPhoneNumber } from "class-validator";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Consulta } from "../../consulta/entities/consulta.entity";
+import { ApiProperty } from "@nestjs/swagger";
 
-@Entity({ name: 'tb_usuarios' })
+@Entity({name: 'tb_pacientes'})
 export class Paciente {
-  @PrimaryGeneratedColumn()
-  @ApiProperty()
-  id: number;
+    
+    @ApiProperty()
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @IsNotEmpty()
-  @Column({ length: 255, nullable: false })
-  @ApiProperty()
-  nome: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    @Column({length: 255, nullable: false})
+    nome: string;
 
-  @IsEmail()
-  @IsNotEmpty()
-  @Column({ length: 255, nullable: false })
-  @ApiProperty()
-  usuario: string;
+    //data de nascimento
+    @ApiProperty()
+    @IsNotEmpty()
+    @Column({type: 'date', nullable: false})
+    dataNasc: Date
 
-  @MinLength(8)
-  @IsNotEmpty()
-  @Column({ length: 255, nullable: false })
-  @ApiProperty()
-  senha: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsPhoneNumber('BR')
+    @Column({nullable: false})
+    telefone: string;
 
-  @Column({ length: 5000 })
-  @ApiProperty()
-  foto: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsEmail()
+    @Column({nullable: false})
+    email: string;
 
-  @ApiProperty()
-  @OneToMany(() => Consulta, (consulta) => consulta.paciente)
-  consulta: Consulta[];
+    @ApiProperty()
+    @OneToMany(() => Consulta, (consulta) => consulta.paciente)
+    consulta: Consulta[]
 }
