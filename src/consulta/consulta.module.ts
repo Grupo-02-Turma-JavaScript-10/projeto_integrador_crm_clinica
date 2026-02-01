@@ -6,9 +6,10 @@ import { ConsultaController } from './controllers/consulta.controller';
 import { EspecialidadeModule } from '../especialidade/especialidade.module';
 import { MedicoService } from '../medico/services/medico.service';
 import { MedicoModule } from '../medico/medico.module';
+import { PacienteModule } from '../paciente/paciente.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Consulta]), EspecialidadeModule, MedicoModule],
+  imports: [TypeOrmModule.forFeature([Consulta]), EspecialidadeModule, MedicoModule, PacienteModule],
   providers: [ConsultaService],
   controllers: [ConsultaController],
   exports: [],

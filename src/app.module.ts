@@ -14,7 +14,7 @@ import { PacienteModule } from './paciente/paciente.module';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      useClass: DevService,
+      useClass: ProdService,
       imports: [ConfigModule],
     }),
     ConsultaModule,

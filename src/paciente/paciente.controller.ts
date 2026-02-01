@@ -1,11 +1,14 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { PacienteService } from './paciente.service';
 import { Paciente } from './entities/paciente.entity';
+import { ApiTags } from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
 
 @Controller('paciente')
+@ApiTags('Pacientes')
 export class PacienteController {
 
-    constructor (private readonly pacienteService: PacienteService){}
+    constructor(private readonly pacienteService: PacienteService) {}
 
     @Get('/all')
     @HttpCode(HttpStatus.OK)
@@ -41,6 +44,12 @@ export class PacienteController {
     @HttpCode(HttpStatus.OK)
     async update(@Body() paciente: Paciente): Promise<Paciente> {
         return this.pacienteService.update(paciente);
+    }
+    
+    @Delete('/delete/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult> {
+        return this.pacienteService.delete(id);
     }
 
 }
