@@ -3,6 +3,7 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { Consulta } from '../../consulta/entities/consulta.entity';
 import { Especialidade } from '../../especialidade/entities/especialidade.entity';
 import { Medico } from '../../medico/entities/medico.entity';
+import { Paciente } from '../../paciente/entities/paciente.entity';
 
 @Injectable()
 export class DevService implements TypeOrmOptionsFactory {
@@ -14,7 +15,7 @@ export class DevService implements TypeOrmOptionsFactory {
       username: 'root',
       password: 'root',
       database: 'db_clinica',
-      entities: [Consulta, Especialidade, Medico],
+      entities: [Consulta, Especialidade, Medico, Paciente],
       synchronize: true,
     };
   }
