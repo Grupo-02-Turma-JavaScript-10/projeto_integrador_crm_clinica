@@ -15,6 +15,11 @@ export class Medico {
   @ApiProperty()
   nome: string;
 
+  @IsNotEmpty()
+  @Column({type: 'date', nullable: false})
+  @ApiProperty()
+  dataNasc: Date;
+
   @IsEmail()
   @IsNotEmpty()
   @Column({ length: 255, nullable: false })
