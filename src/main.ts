@@ -24,7 +24,7 @@ async function bootstrap() {
     customfavIcon: 'https://i.imgur.com/siAxTvd.png',
     customCss: `
       .swagger-ui .topbar { 
-        background: linear-gradient(135deg, #2d8a2dff 0%, #38c87dff 100%);
+        background: linear-gradient(135deg, #53c89b 0%, #53c89b 100%);
         box-shadow: 0 2px 4px rgba(19, 19, 19, 0.1);
       }
       .swagger-ui .info .title {
@@ -35,9 +35,8 @@ async function bootstrap() {
       margin-right: 8px;
       }
       .information-container .info .title::before {
-      content: url('https://i.imgur.com/wow0MaD.png');
+      content: url('https://i.imgur.com/qfaE4BO.png');
       font-size: 40px;
-      margin-right: 25px;
       }
       .information-container .info .title {
       display: flex;
@@ -49,7 +48,7 @@ async function bootstrap() {
       .information-container .info .description p {
         color: #0e0e0e; !important;
         font-size: 30px;
-        line-height: 1.7;
+        line-height: 0.5;
         margin-bottom: 15px;
       }
     `,
@@ -59,6 +58,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
 
-  await app.listen(process.env.PORT ?? 4000);
+  await app.listen(process.env.PORT || 4000);
 }
 bootstrap();

@@ -1,7 +1,12 @@
+<div align="center">
+  <img src="https://i.imgur.com/znEnnyf.png" alt="CRMed Logo" width="400">
+</div>
+
 <h1 align="center">CRMed - API para Gerenciamento de Consultas Médicas</h1>
 <h3 align="center">Sistema de Agendamento e Controle de Consultas Clínicas</h3>
 
 <h4 align="center">Por Alan Dias, Eduardo Reis, Enrique Andreazza, Kali França, Karoline S. Fassel, Lívia Dias e Pâmela dos Reis</h4>
+
 
 ---
 
@@ -39,8 +44,7 @@ Esses atributos foram escolhidos por permitirem organização clara das áreas m
 A entidade **Consulta** é o núcleo do sistema de agendamento. Os atributos definidos além do ID são:
 
 - **data** – Data agendada para a consulta  
-- **hora** – Horário agendado para a consulta  
-- **nomePaciente** – Nome do paciente (redundante para facilitar consultas rápidas)  
+- **hora** – Horário agendado para a consulta 
 - **descricaoSintomas** – Descrição detalhada dos sintomas relatados pelo paciente  
 - **realizado** – Status booleano indicando se a consulta foi realizada (padrão: false)  
 - **especialidade** – Especialidade médica relacionada à consulta  
