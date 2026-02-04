@@ -16,7 +16,8 @@ export class MedicoService {
         return await this.medicoRepository.findOne({
             where: {
                 usuario: usuario 
-            }
+            },
+            relations: ['especialidade', 'consulta']
         })
     }
 
