@@ -36,7 +36,6 @@ export class EspecialidadeController {
   }
   
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
   @Post('/new')
   @HttpCode(HttpStatus.CREATED)
   create(@Body() especialidade: Especialidade): Promise<Especialidade> {

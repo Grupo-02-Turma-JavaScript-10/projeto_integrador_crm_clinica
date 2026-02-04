@@ -9,14 +9,14 @@ import { MedicoService } from '../../medico/services/medico.service';
 @Injectable()
 export class AuthService{
     constructor(
-        private pacienteService: MedicoService,
+        private medicoService: MedicoService,
         private jwtService: JwtService,
         private bcrypt: Bcrypt
     ){ }
 
     async validateUser(username: string, password: string): Promise<any>{
 
-        const buscaUsuario = await this.pacienteService.findByUsuario(username)
+        const buscaUsuario = await this.medicoService.findByUsuario(username)
 
         if(!buscaUsuario)
             throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND)
@@ -36,11 +36,12 @@ export class AuthService{
 
         const payload = { sub: usuarioLogin.usuario }
 
-        const buscaUsuario = await this.pacienteService.findByUsuario(usuarioLogin.usuario)
+        const buscaUsuario = await this.medicoService.findByUsuario(usuarioLogin.usuario)
 
         return{
             id: buscaUsuario?.id,
             nome: buscaUsuario?.nome,
+            especialidade: buscaUsuario?.especialidade,
             usuario: usuarioLogin.usuario,
             senha: '',
             foto: buscaUsuario?.foto,
