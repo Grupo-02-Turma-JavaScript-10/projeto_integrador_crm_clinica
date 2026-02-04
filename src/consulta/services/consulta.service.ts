@@ -4,6 +4,7 @@ import { Consulta } from '../entities/consulta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EspecialidadeService } from '../../especialidade/services/especialidade.service';
 import { MedicoService } from '../../medico/services/medico.service';
+import { PacienteService } from '../../paciente/paciente.service';
 
 @Injectable()
 export class ConsultaService {
@@ -12,6 +13,7 @@ export class ConsultaService {
     private readonly consultaRepository: Repository<Consulta>,
     private readonly especialidadeService: EspecialidadeService,
     private readonly medicoService: MedicoService,
+    private readonly pacienteService: PacienteService,
   ) {}
 
   async findAll(): Promise<Consulta[]> {
@@ -43,8 +45,16 @@ export class ConsultaService {
 
   async create(consulta: Consulta): Promise<Consulta> {
     await this.medicoService.findById(consulta.medico.id);
-
     await this.especialidadeService.findById(consulta.especialidade.id);
+
+    // Criar o paciente primeiro se vier com dados
+    if (consulta.paciente && !consulta.paciente.id) {
+      const novoPaciente = await this.pacienteService.create(consulta.paciente);
+      consulta.paciente = novoPaciente;
+    } else if (consulta.paciente && consulta.paciente.id) {
+      // Se vier com ID, buscar o paciente existente
+      await this.pacienteService.findById(consulta.paciente.id);
+    }
 
     return await this.consultaRepository.save(consulta);
   }
