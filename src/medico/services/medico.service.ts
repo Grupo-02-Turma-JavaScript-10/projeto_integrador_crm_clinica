@@ -22,7 +22,9 @@ export class MedicoService {
     }
 
     async findAll(): Promise<Medico[]> {
-        return await this.medicoRepository.find();
+        return await this.medicoRepository.find({
+            relations: ['especialidade']
+        });
 
     }
 
