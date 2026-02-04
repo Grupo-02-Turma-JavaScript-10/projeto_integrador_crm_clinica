@@ -50,4 +50,22 @@ export class AuthService{
         }
 
     }
+
+    async getProfile(username: string){
+        const buscaUsuario = await this.medicoService.findByUsuario(username)
+
+        if(!buscaUsuario)
+            throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND)
+
+        return{
+            id: buscaUsuario.id,
+            nome: buscaUsuario.nome,
+            especialidade: buscaUsuario.especialidade,
+            consulta: buscaUsuario.consulta,
+            usuario: buscaUsuario.usuario,
+            senha: '',
+            foto: buscaUsuario.foto,
+            token: '',
+        }
+    }
 }
