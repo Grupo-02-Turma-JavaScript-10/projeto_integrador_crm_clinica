@@ -11,7 +11,6 @@ export class MedicoController {
 
   constructor(private readonly medicoService: MedicoService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get('/all')
   @HttpCode(HttpStatus.OK)
   findAll(): Promise<Medico[]> {
