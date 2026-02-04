@@ -21,6 +21,7 @@ export class ConsultaService {
       relations: {
         especialidade: true,
         medico: true,
+        paciente: true,
       },
     });
   }
